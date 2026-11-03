@@ -197,4 +197,4 @@ integration, and the potential for AI-assisted learning in one
 application.
 
 ------------------------------------------------------------------------
-
+“Turn your goals into action, your action into progress, and your progress into achievement—with AURA-X.”
