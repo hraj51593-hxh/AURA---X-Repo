@@ -1,0 +1,2 @@
+ALTER TABLE `aura_learning_resources` MODIFY COLUMN `type` enum('documentation','tutorial','article','book','course','paper','video','dataset','practice','project','other') NOT NULL DEFAULT 'other';--> statement-breakpoint
+ALTER TABLE `aura_learning_resources` ADD `bookmarkedAt` timestamp;

@@ -1,0 +1,151 @@
+.auri-face {
+  --auri-ink: #302b2a;
+  position: relative;
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+  aspect-ratio: 1;
+  vertical-align: middle;
+  line-height: 0;
+  isolation: isolate;
+  animation: auri-face-float 5.2s ease-in-out infinite;
+}
+
+.auri-face--compact { width: 3.5rem; }
+.auri-face--large { width: 10rem; }
+.auri-face__art { display: block; width: 100%; height: 100%; overflow: visible; }
+.auri-face__orbit { fill: none; stroke: #a94b3d; stroke-opacity: .25; stroke-width: .8; stroke-dasharray: 2.2 3.5; transform: rotate(-17deg); transform-origin: 50px 53px; }
+.auri-face__orbit-dot { fill: #ffb78b; }
+.auri-face__orbit-dot--small { fill: #e67a5b; }
+.auri-face__propeller { transform-box: fill-box; transform-origin: 50% 50%; animation: auri-propeller-spin 7s linear infinite; }
+.auri-face__propeller path { fill: #e9664c; stroke: #a84436; stroke-width: .8; stroke-linecap: round; }
+.auri-face__propeller path:first-child { fill: none; stroke-width: 1.6; }
+.auri-face__propeller circle { fill: #ffd09b; stroke: #a84436; stroke-width: .7; }
+.auri-face__character { transform-box: view-box; transform-origin: 50px 57px; animation-duration: 2.4s; animation-timing-function: ease-in-out; animation-iteration-count: infinite; }
+.auri-face__orb { stroke: #a84436; stroke-opacity: .4; stroke-width: 1; }
+.auri-face__shine { pointer-events: none; }
+.auri-face__cheek { fill: #bd5142; opacity: .19; }
+.auri-face__arm { transform-box: view-box; will-change: transform; transition: transform .28s ease; }
+.auri-face__arm--left { transform-origin: 31px 63px; }
+.auri-face__arm--right { transform-origin: 69px 63px; }
+.auri-face__limb { fill: none; stroke: #d75a41; stroke-width: 4.2; stroke-linecap: round; }
+.auri-face__hand { fill: #f87457; stroke: #a84436; stroke-width: 1.2; stroke-linejoin: round; }
+.auri-face__fingers { fill: none; stroke: #fff0d6; stroke-width: 1; stroke-linecap: round; }
+.auri-face__gaze { transform: translate(var(--auri-gaze-x, 0px), var(--auri-gaze-y, 0px)); transition: transform .18s ease-out; }
+.auri-face__eyes { transform-box: fill-box; transform-origin: center; animation: auri-eye-blink 6.4s ease-in-out infinite; }
+.auri-face__eye { fill: var(--auri-ink); transition: transform .18s ease; transform-box: fill-box; transform-origin: center; }
+.auri-face__eye-glint { fill: #fff4df; }
+.auri-face__brow, .auri-face__lid { fill: none; stroke: var(--auri-ink); stroke-width: 1.8; stroke-linecap: round; opacity: 0; }
+.auri-face__mouth-shape { fill: none; stroke: var(--auri-ink); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; opacity: 0; }
+.auri-face__mouth-shape.auri-mouth--grin, .auri-face__mouth-shape.auri-mouth--laugh, .auri-face__mouth-shape.auri-mouth--o { fill: var(--auri-ink); stroke: var(--auri-ink); }
+.auri-face__tongue { fill: #f58f78; stroke: #f58f78; stroke-width: .6; opacity: 0; }
+.auri-face--mouth-neutral .auri-mouth--neutral,
+.auri-face--mouth-smile .auri-mouth--smile,
+.auri-face--mouth-grin .auri-mouth--grin,
+.auri-face--mouth-laugh .auri-mouth--laugh,
+.auri-face--mouth-tiny .auri-mouth--tiny,
+.auri-face--mouth-wavy .auri-mouth--wavy,
+.auri-face--mouth-o .auri-mouth--o,
+.auri-face--mouth-flat .auri-mouth--flat,
+.auri-face--mouth-frown .auri-mouth--frown { opacity: 1; }
+.auri-face--mouth-laugh .auri-face__tongue { opacity: .95; }
+
+.auri-face--eyes-soft .auri-face__eye { transform: scaleY(.78); }
+.auri-face--eyes-crescent .auri-face__eye { opacity: 0; }
+.auri-face--eyes-crescent .auri-face__lid { opacity: 1; stroke-width: 2.2; }
+.auri-face--eyes-wide .auri-face__eye { transform: scale(1.19); }
+.auri-face--eyes-wide .auri-face__brow { opacity: .88; transform: translateY(-1px); }
+.auri-face--eyes-asym .auri-face__eye:first-of-type { transform: rotate(-12deg) scaleY(.82); }
+.auri-face--eyes-asym .auri-face__brow--left { opacity: 1; transform: translateY(-2px) rotate(-8deg); }
+.auri-face--eyes-round .auri-face__eye { transform: scale(1.28); }
+.auri-face--eyes-round .auri-face__brow { opacity: .9; transform: translateY(-2px); }
+.auri-face--eyes-narrow .auri-face__eye { transform: scaleY(.64); }
+.auri-face--eyes-narrow .auri-face__brow { opacity: .95; transform: translateY(2px); }
+.auri-face--eyes-side .auri-face__eye { transform: translateX(1.6px); }
+.auri-face--eyes-side .auri-face__eye-glint { transform: translateX(1.6px); }
+.auri-face--eyes-closed .auri-face__eye, .auri-face--eyes-closed .auri-face__eye-glint { opacity: 0; }
+.auri-face--eyes-closed .auri-face__lid { opacity: 1; stroke-width: 2; }
+.auri-face--eyes-droop .auri-face__eye { transform: scaleY(.55) translateY(1.3px); }
+.auri-face--eyes-droop .auri-face__brow { opacity: .65; transform: translateY(1.4px); }
+.auri-face--eyes-half .auri-face__eye { transform: scaleY(.43) translateY(1.7px); }
+.auri-face--eyes-half .auri-face__brow { opacity: .6; transform: translateY(1.4px); }
+.auri-face--eyes-worried .auri-face__brow { opacity: 1; transform: translateY(-2px) rotate(9deg); }
+.auri-face--eyes-sharp .auri-face__brow { opacity: 1; transform: translateY(2px) rotate(-9deg); }
+.auri-face--eyes-wink .auri-face__eye:first-of-type { opacity: 0; }
+.auri-face--eyes-wink .auri-face__lid--left { opacity: 1; stroke-width: 2.3; }
+.auri-face--eyes-up .auri-face__eye, .auri-face--eyes-up .auri-face__eye-glint { transform: translateY(-1.5px); }
+
+.auri-face--mood-sleeping .auri-face__character { animation-name: auri-mood-sleeping; animation-duration: 3.8s; }
+.auri-face--mood-waking .auri-face__character { animation-name: auri-mood-waking; animation-duration: 1.7s; }
+.auri-face--mood-idle .auri-face__character { animation-name: auri-mood-idle; animation-duration: 3s; }
+.auri-face--mood-listening .auri-face__character { animation-name: auri-mood-listening; animation-duration: 2.3s; }
+.auri-face--mood-thinking .auri-face__character { animation-name: auri-mood-thinking; animation-duration: 2.5s; }
+.auri-face--mood-searching .auri-face__character { animation-name: auri-mood-searching; animation-duration: 2.1s; }
+.auri-face--mood-working .auri-face__character { animation-name: auri-mood-working; animation-duration: 1.5s; }
+.auri-face--mood-excited .auri-face__character { animation-name: auri-mood-excited; animation-duration: 1.15s; }
+.auri-face--mood-bored .auri-face__character { animation-name: auri-mood-bored; animation-duration: 3.4s; }
+.auri-face--mood-suspicious .auri-face__character { animation-name: auri-mood-suspicious; animation-duration: 2s; }
+.auri-face--mood-angry .auri-face__character { animation-name: auri-mood-angry; animation-duration: .75s; }
+.auri-face--mood-drowsy .auri-face__character { animation-name: auri-mood-drowsy; animation-duration: 3.1s; }
+.auri-face--mood-happy .auri-face__character { animation-name: auri-mood-happy; animation-duration: 1.8s; }
+.auri-face--mood-curious .auri-face__character { animation-name: auri-mood-curious; animation-duration: 2.2s; }
+.auri-face--mood-confused .auri-face__character { animation-name: auri-mood-confused; animation-duration: 1.9s; }
+.auri-face--mood-surprised .auri-face__character { animation-name: auri-mood-surprised; animation-duration: 1.3s; }
+.auri-face--mood-proud .auri-face__character { animation-name: auri-mood-proud; animation-duration: 2.6s; }
+.auri-face--mood-shy .auri-face__character { animation-name: auri-mood-shy; animation-duration: 2.4s; }
+.auri-face--mood-sad .auri-face__character { animation-name: auri-mood-sad; animation-duration: 3.2s; }
+.auri-face--mood-laughing .auri-face__character { animation-name: auri-mood-laughing; animation-duration: .85s; }
+.auri-face--mood-scared .auri-face__character { animation-name: auri-mood-scared; animation-duration: .55s; }
+.auri-face--mood-playful .auri-face__character { animation-name: auri-mood-playful; animation-duration: 1.6s; }
+.auri-face--mood-celebrate .auri-face__character { animation-name: auri-mood-celebrate; animation-duration: 1.2s; }
+.auri-face--mood-thinking .auri-face__arm--right, .auri-face--mood-searching .auri-face__arm--right { transform: rotate(-48deg) translate(-2px, -2px); }
+.auri-face--mood-listening .auri-face__arm--left { transform: rotate(18deg); }
+.auri-face--mood-listening .auri-face__arm--right { transform: rotate(-18deg); }
+.auri-face--mood-working .auri-face__arm--left { transform: rotate(-12deg) translate(1px, 2px); }
+.auri-face--mood-working .auri-face__arm--right { transform: rotate(12deg) translate(-1px, 2px); }
+.auri-face--mood-curious .auri-face__arm--left, .auri-face--mood-curious .auri-face__arm--right { transform: rotate(25deg); }
+.auri-face--mood-confused .auri-face__arm--left, .auri-face--mood-surprised .auri-face__arm--left, .auri-face--mood-scared .auri-face__arm--left { transform: rotate(38deg); }
+.auri-face--mood-confused .auri-face__arm--right, .auri-face--mood-surprised .auri-face__arm--right, .auri-face--mood-scared .auri-face__arm--right { transform: rotate(-38deg); }
+.auri-face--mood-excited .auri-face__arm--left, .auri-face--mood-happy .auri-face__arm--left, .auri-face--mood-proud .auri-face__arm--left, .auri-face--mood-waking .auri-face__arm--left, .auri-face--mood-celebrate .auri-face__arm--left { transform: rotate(62deg); }
+.auri-face--mood-excited .auri-face__arm--right, .auri-face--mood-happy .auri-face__arm--right, .auri-face--mood-proud .auri-face__arm--right, .auri-face--mood-waking .auri-face__arm--right, .auri-face--mood-celebrate .auri-face__arm--right { transform: rotate(-62deg); }
+.auri-face--mood-playful .auri-face__arm--right, .auri-face--mood-laughing .auri-face__arm--right { animation: auri-wave-right 1.05s ease-in-out infinite; }
+.auri-face--mood-sad .auri-face__arm--left, .auri-face--mood-sleeping .auri-face__arm--left, .auri-face--mood-drowsy .auri-face__arm--left, .auri-face--mood-bored .auri-face__arm--left { transform: rotate(-28deg); }
+.auri-face--mood-sad .auri-face__arm--right, .auri-face--mood-sleeping .auri-face__arm--right, .auri-face--mood-drowsy .auri-face__arm--right, .auri-face--mood-bored .auri-face__arm--right { transform: rotate(28deg); }
+.auri-face--mood-shy .auri-face__arm--left { transform: rotate(-20deg) translate(2px, 1px); }
+.auri-face--mood-shy .auri-face__arm--right { transform: rotate(20deg) translate(-2px, 1px); }
+.auri-face[data-speaking="true"] .auri-face__mouth-shape { transform-box: view-box; transform-origin: 50px 60px; animation: auri-speech-mouth .24s ease-in-out infinite alternate; }
+
+@keyframes auri-propeller-spin { to { transform: rotate(360deg); } }
+@keyframes auri-face-float { 0%, 100% { translate: 0 0; } 50% { translate: 0 -1.5px; } }
+@keyframes auri-eye-blink { 0%, 91%, 94%, 100% { transform: scaleY(1); } 92%, 93% { transform: scaleY(.08); } }
+@keyframes auri-mood-sleeping { 0%, 100% { transform: translateY(1.2px) rotate(-1deg); } 50% { transform: translateY(2.5px) rotate(1deg); } }
+@keyframes auri-mood-waking { 0%, 100% { transform: translateY(0) scale(1); } 22% { transform: translateY(3px) scale(.94, 1.04); } 60% { transform: translateY(-2px) scale(1.02, .98); } }
+@keyframes auri-mood-idle { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-1.5px); } }
+@keyframes auri-mood-listening { 0%, 100% { transform: rotate(0) translateY(0); } 32% { transform: rotate(-4deg) translateY(-.5px); } 68% { transform: rotate(1deg); } }
+@keyframes auri-mood-thinking { 0%, 100% { transform: rotate(0) translateY(0); } 38% { transform: rotate(5deg) translateY(-1px); } 68% { transform: rotate(2deg); } }
+@keyframes auri-mood-searching { 0%, 100% { transform: translateX(0) rotate(0); } 25% { transform: translateX(2px) rotate(2deg); } 55% { transform: translateX(-2px) rotate(-2deg); } 78% { transform: translateX(1px); } }
+@keyframes auri-mood-working { 0%, 100% { transform: translateY(0) rotate(0); } 25% { transform: translateY(1.4px) rotate(-1.5deg); } 50% { transform: translateY(-.7px) rotate(1deg); } 75% { transform: translateY(1px) rotate(-.7deg); } }
+@keyframes auri-mood-excited { 0%, 100% { transform: translateY(0) scale(1); } 25% { transform: translateY(-4px) scale(1.03); } 48% { transform: translateY(0) scale(.98, 1.02); } 72% { transform: translateY(-2px) scale(1.01); } }
+@keyframes auri-mood-bored { 0%, 100% { transform: rotate(0) translateY(0); } 44% { transform: rotate(3deg) translateY(1px); } 72% { transform: rotate(-1deg) translateY(.5px); } }
+@keyframes auri-mood-suspicious { 0%, 100% { transform: rotate(0); } 30% { transform: rotate(-3deg) translateX(-1px); } 62% { transform: rotate(2deg) translateX(1px); } }
+@keyframes auri-mood-angry { 0%, 100% { transform: translateX(0); } 20% { transform: translateX(-2px) rotate(-1deg); } 40% { transform: translateX(2px) rotate(1deg); } 60% { transform: translateX(-1.5px); } 80% { transform: translateX(1px); } }
+@keyframes auri-mood-drowsy { 0%, 100% { transform: rotate(0) translateY(0); } 32% { transform: rotate(5deg) translateY(1px); } 68% { transform: rotate(-2deg) translateY(2px); } }
+@keyframes auri-mood-happy { 0%, 100% { transform: translateY(0) scale(1); } 30% { transform: translateY(-2px) scale(1.015); } 56% { transform: translateY(0) scale(.99, 1.01); } 80% { transform: translateY(-1px); } }
+@keyframes auri-mood-curious { 0%, 100% { transform: rotate(0) translateX(0); } 40% { transform: rotate(-6deg) translateX(-1px); } 72% { transform: rotate(-3deg); } }
+@keyframes auri-mood-confused { 0%, 100% { transform: rotate(0) translateY(0); } 25% { transform: rotate(-5deg) translateY(-1px); } 50% { transform: rotate(4deg) translateY(1px); } 76% { transform: rotate(-2deg); } }
+@keyframes auri-mood-surprised { 0%, 100% { transform: scale(1); } 22% { transform: scale(1.08); } 46% { transform: scale(.97); } 68% { transform: scale(1.04); } }
+@keyframes auri-mood-proud { 0%, 100% { transform: translateY(0) rotate(0); } 36% { transform: translateY(-2px) rotate(2deg); } 68% { transform: translateY(-1px) rotate(1deg); } }
+@keyframes auri-mood-shy { 0%, 100% { transform: rotate(0) translateY(0); } 28% { transform: rotate(4deg) translateY(1px); } 62% { transform: rotate(-2deg) translateY(1px); } }
+@keyframes auri-mood-sad { 0%, 100% { transform: translateY(0) rotate(0); } 50% { transform: translateY(2px) rotate(-2deg); } }
+@keyframes auri-mood-laughing { 0%, 100% { transform: translateY(0) rotate(0); } 20% { transform: translateY(-1px) rotate(-3deg); } 40% { transform: translateY(1px) rotate(3deg); } 60% { transform: translateY(-1px) rotate(-2deg); } 80% { transform: rotate(1deg); } }
+@keyframes auri-mood-scared { 0%, 100% { transform: translate(0, 0); } 20% { transform: translate(-1.5px, .5px); } 40% { transform: translate(1.5px, -.5px); } 60% { transform: translate(-1px, .7px); } 80% { transform: translate(1px, -.3px); } }
+@keyframes auri-mood-playful { 0%, 100% { transform: rotate(0) translateY(0); } 30% { transform: rotate(-5deg) translateY(-1px); } 62% { transform: rotate(4deg) translateY(0); } }
+@keyframes auri-mood-celebrate { 0%, 100% { transform: translateY(0) scale(1); } 18% { transform: translateY(-5px) scale(1.04, .98); } 36% { transform: translateY(0) scale(.97, 1.05); } 58% { transform: translateY(-3px) rotate(3deg); } 78% { transform: translateY(0) rotate(-2deg); } }
+@keyframes auri-wave-right { 0%, 100% { transform: rotate(-22deg); } 50% { transform: rotate(-68deg); } }
+@keyframes auri-speech-mouth { from { transform: scaleY(.72); } to { transform: scaleY(1.18); } }
+
+@media (prefers-reduced-motion: reduce) {
+  .auri-face, .auri-face__character, .auri-face__propeller, .auri-face__eyes, .auri-face__arm, .auri-face__mouth-shape { animation: none !important; }
+  .auri-face__gaze, .auri-face__eye, .auri-face__arm { transition: none; }
+}

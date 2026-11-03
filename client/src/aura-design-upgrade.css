@@ -1,0 +1,472 @@
+/* AURA-X design-only layer. Keep behavior and component contracts in the existing files. */
+:root {
+  --bg: #f7f6f4;
+  --surface: #fffefd;
+  --surface-2: #f2eeeb;
+  --text: #282421;
+  --ink: #282421;
+  --muted: #625b56;
+  --line: #e4dcd6;
+  --accent: #c84332;
+  --accent-2: #f6e2dc;
+  --peach: #e87945;
+  --aura-design-ease: cubic-bezier(.2,.75,.25,1);
+  color-scheme: light;
+}
+
+:root[data-theme="dark"] {
+  --bg: #11100f;
+  --surface: #1a1817;
+  --surface-2: #24211f;
+  --text: #f5f0ec;
+  --ink: #f5f0ec;
+  --muted: #bdb3ac;
+  --line: #39322e;
+  --accent: #ff7059;
+  --accent-2: #40241e;
+  --peach: #ff9a62;
+  color-scheme: dark;
+}
+
+html { font-size: 100%; text-size-adjust: 100%; -webkit-text-size-adjust: 100%; }
+body {
+  color: var(--text);
+  font-family: "DM Sans", Inter, ui-sans-serif, system-ui, sans-serif;
+  font-size: clamp(1rem, .98rem + .12vw, 1.0625rem);
+  line-height: 1.65;
+  text-rendering: optimizeLegibility;
+}
+h1, h2, h3, h4, .brand, .goal-form-intro h3, .aura-empty h3 {
+  font-family: "Manrope", "DM Sans", ui-sans-serif, system-ui, sans-serif;
+  text-wrap: balance;
+}
+h1 { font-size: clamp(1.85rem, 1.35rem + 2.35vw, 3.25rem); line-height: 1.12; letter-spacing: -.035em; }
+h2 { font-size: clamp(1.45rem, 1.2rem + 1.15vw, 2.1rem); line-height: 1.22; letter-spacing: -.025em; }
+h3 { font-size: clamp(1.125rem, 1.02rem + .45vw, 1.4rem); line-height: 1.35; }
+.hero-copy h1 { font-size: clamp(2.2rem, 1.55rem + 4.1vw, 4.25rem); line-height: 1.05; }
+
+/* Bring previously undersized copy up to readable sizes without changing layout behavior. */
+.field, .field label, label, legend { font-size: clamp(.875rem, .84rem + .16vw, 1rem); line-height: 1.5; }
+.field input, .field textarea, .field select, input, textarea, select,
+.chat-compose textarea, .message-bubble, .aura-message, .aura-feedback,
+.aura-quiz-option, .task-content p, .goal-card-description,
+.resource-card p, .notification-heading p, .notification-item p,
+.aura-muted, .aura-live-status, .aura-error, .aura-success, .fine-print,
+.field small, small, .muted { font-size: clamp(.8125rem, .79rem + .12vw, .9375rem); line-height: 1.6; }
+.btn, button, .side-link, .work-tab, .filter-tab, .resource-card a,
+.task-action, .task-actions .btn, .chat-compose button {
+  font-size: clamp(.875rem, .84rem + .16vw, 1rem);
+  line-height: 1.4;
+}
+.nav-note, .breadcrumb, .goal-card-meta, .goal-card-bottom, .goal-subtitle,
+.stat-top, .stat-foot, .compose-foot, .resource-tag, .aura-chip,
+.attendance-legend, .attendance-count, .attendance-day, .path-stage-text small,
+.path-stage-text em, .path-stage-status, .notification-item small {
+  font-size: clamp(.75rem, .73rem + .08vw, .875rem);
+  line-height: 1.45;
+}
+.goal-card-title, .task-content h3, .resource-card h3, .aura-task-title,
+.notification-item strong, .right-card-head h3 { font-size: clamp(1rem, .96rem + .18vw, 1.125rem); line-height: 1.45; }
+.message-bubble { font-size: clamp(.9375rem, .91rem + .12vw, 1rem); line-height: 1.7; }
+
+.btn-primary, .btn-dark, .send-button { background: var(--accent); }
+.btn-primary:hover, .btn-dark:hover, .send-button:hover { filter: brightness(1.04); }
+.stat-card, .goal-card, .panel, .right-card, .task-card, .resource-card,
+.notifications-panel, .auth-card {
+  border-color: var(--line);
+  box-shadow: 0 10px 32px color-mix(in srgb, var(--ink) 5%, transparent);
+}
+button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visible,
+select:focus-visible, [tabindex]:focus-visible {
+  outline: 3px solid color-mix(in srgb, var(--accent) 68%, transparent);
+  outline-offset: 3px;
+}
+
+/* Brief page entrance and hover feedback; no persistent or blocking motion. */
+@keyframes aura-design-enter {
+  from { opacity: 0; transform: translateY(7px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.dashboard-content, .workspace-page, .auth-layout {
+  animation: aura-design-enter 360ms var(--aura-design-ease) both;
+}
+.btn, button, .side-link, .goal-card, .stat-card, .panel, .right-card,
+.resource-card, .task-card, .icon-button, .theme-toggle {
+  transition: color 180ms ease, background-color 180ms ease, border-color 180ms ease,
+    box-shadow 180ms ease, opacity 180ms ease, transform 180ms var(--aura-design-ease);
+}
+@media (max-width: 700px) {
+  body { font-size: 1rem; }
+  .dashboard-content { overflow-wrap: anywhere; }
+  .workspace-tabs { overflow-x: auto; scrollbar-width: thin; }
+  .hero-copy h1 { font-size: clamp(2.25rem, 10vw, 3.35rem); }
+}
+@media (min-width: 701px) and (max-width: 1100px) {
+  .hero-copy h1 { font-size: clamp(2.5rem, 5vw, 3.6rem); }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    scroll-behavior: auto !important;
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+  }
+}
+
+
+/* Auri: an original AURA-X orb mascot, animated locally with no external service. */
+.aura-mascot-widget {
+  position: fixed;
+  z-index: 45;
+  transition: left .24s ease-out, top .24s ease-out;
+  will-change: left, top;
+  right: clamp(14px, 2vw, 26px);
+  bottom: max(20px, env(safe-area-inset-bottom));
+  display: grid;
+  justify-items: end;
+  gap: 10px;
+  pointer-events: none;
+  color: var(--accent);
+}
+.aura-mascot-button {
+  width: 74px;
+  height: 74px;
+  padding: 0;
+  border: 1px solid color-mix(in srgb, var(--accent) 22%, var(--line));
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--surface) 92%, transparent);
+  box-shadow: 0 12px 32px color-mix(in srgb, #1a100e 22%, transparent), 0 0 0 5px color-mix(in srgb, var(--accent) 7%, transparent);
+  cursor: pointer;
+  pointer-events: auto;
+  transition: transform 180ms var(--aura-design-ease), box-shadow 180ms ease;
+}
+.aura-mascot-button:hover { transform: translateY(-3px) scale(1.025); }
+.aura-mascot-button:focus-visible { outline: 3px solid var(--accent); outline-offset: 4px; }
+.aura-mascot-art { display: block; width: 100%; height: 100%; overflow: visible; }
+.aura-mascot-orb { transform-box: fill-box; transform-origin: center; animation: aura-mascot-idle 4.2s ease-in-out infinite; filter: drop-shadow(0 3px 4px rgb(96 34 24 / 18%)); }
+.aura-mascot-eye { transform-box: fill-box; transform-origin: center; animation: aura-mascot-blink 5.2s ease-in-out infinite; }
+.aura-mascot-eye-right { animation-delay: .08s; }
+.aura-mascot-sparkles { opacity: .68; transform-box: fill-box; transform-origin: center; animation: aura-mascot-sparkle 3.4s ease-in-out infinite; }
+.aura-mascot-tip {
+  width: min(232px, calc(100vw - 100px));
+  padding: 12px 15px;
+  border: 1px solid var(--line);
+  border-radius: 15px 15px 4px 15px;
+  background: var(--surface);
+  color: var(--text);
+  box-shadow: 0 12px 30px rgb(20 16 14 / 16%);
+  pointer-events: auto;
+  animation: aura-mascot-tip-in 180ms ease-out both;
+}
+.aura-mascot-tip-name { color: var(--accent); font-size: .78rem; font-weight: 750; letter-spacing: .04em; }
+.aura-mascot-tip p { margin: 3px 0 0; font-size: .9rem; line-height: 1.45; }
+.aura-mascot-widget[data-mood="thinking"] .aura-mascot-orb,
+.aura-mascot-widget[data-mood="searching"] .aura-mascot-orb { animation: aura-mascot-think 1.1s ease-in-out infinite; }
+.aura-mascot-widget[data-mood="searching"] .aura-mascot-halo { animation: aura-mascot-search 1.4s linear infinite; transform-box: fill-box; transform-origin: center; }
+.aura-mascot-widget[data-mood="celebrate"] .aura-mascot-orb,
+.aura-mascot-widget[data-mood="excited"] .aura-mascot-orb,
+.aura-mascot-widget[data-mood="playful"] .aura-mascot-orb { animation: aura-mascot-celebrate .75s ease-in-out 2; }
+.aura-mascot-widget[data-mood="sleeping"] .aura-mascot-orb { animation: aura-mascot-sleep 4.2s ease-in-out infinite; }
+.aura-mascot-widget[data-mood="sleeping"] .aura-mascot-eye { transform: scaleY(.12); animation: none; }
+.aura-mascot-widget[data-mood="confused"] .aura-mascot-orb { animation: aura-mascot-confused .5s ease-in-out 2; }
+.aura-mascot-widget[data-mood="happy"] .aura-mascot-eye { transform: scaleY(.72); }
+.aura-mascot-widget[data-mood="listening"] .aura-mascot-eye { transform: scaleY(1.12); }
+@keyframes aura-mascot-idle { 0%,100% { transform: translateY(0) rotate(-1deg); } 50% { transform: translateY(-3px) rotate(1deg); } }
+@keyframes aura-mascot-blink { 0%,91%,100% { transform: scaleY(1); } 94%,97% { transform: scaleY(.1); } }
+@keyframes aura-mascot-sparkle { 0%,100% { opacity: .4; transform: scale(.94); } 50% { opacity: .9; transform: scale(1.06); } }
+@keyframes aura-mascot-think { 0%,100% { transform: translateY(0) rotate(-3deg); } 50% { transform: translateY(-2px) rotate(3deg); } }
+@keyframes aura-mascot-search { to { transform: rotate(360deg); } }
+@keyframes aura-mascot-celebrate { 0%,100% { transform: translateY(0) rotate(0); } 30% { transform: translateY(-6px) rotate(-9deg); } 65% { transform: translateY(-3px) rotate(8deg); } }
+@keyframes aura-mascot-sleep { 0%,100% { transform: translateY(0); } 50% { transform: translateY(2px); } }
+@keyframes aura-mascot-confused { 0%,100% { transform: rotate(0); } 35% { transform: rotate(-9deg); } 70% { transform: rotate(7deg); } }
+@keyframes aura-mascot-tip-in { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: translateY(0); } }
+@media (max-width: 700px) {
+  .aura-mascot-widget { right: 12px; bottom: calc(5.25rem + env(safe-area-inset-bottom)); }
+  .aura-mascot-button { width: 58px; height: 58px; }
+  .aura-mascot-tip { width: min(190px, calc(100vw - 88px)); padding: 10px 12px; }
+  .aura-mascot-tip p { font-size: .84rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .aura-mascot-widget { transition: none !important; will-change: auto; }
+  .aura-mascot-orb, .aura-mascot-eye, .aura-mascot-sparkles,
+  .aura-mascot-halo, .aura-mascot-tip { animation: none !important; transition: none !important; }
+  .aura-mascot-button:hover { transform: none; }
+}
+
+.aura-mascot-propeller {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: aura-mascot-propeller-spin 1.35s linear infinite;
+}
+.aura-mascot-widget[data-mood="thinking"] .aura-mascot-propeller { animation-duration: .62s; }
+.aura-mascot-widget[data-mood="searching"] .aura-mascot-propeller { animation-duration: .42s; }
+.aura-mascot-widget[data-mood="sleeping"] .aura-mascot-propeller { animation-duration: 2.8s; }
+@keyframes aura-mascot-propeller-spin { to { transform: rotate(360deg); } }
+@media (prefers-reduced-motion: reduce) {
+  .aura-mascot-propeller { animation: none !important; }
+}
+
+.aura-mascot-coach-link {
+  margin-top: 7px;
+  padding: 3px 0;
+  border: 0;
+  background: transparent;
+  color: var(--accent);
+  font-size: .82rem;
+  font-weight: 700;
+  text-align: left;
+  cursor: pointer;
+}
+.aura-mascot-coach-link:hover { text-decoration: underline; }
+
+/* Auri's real agent chat panel: private, goal-scoped, and visually separate from page controls. */
+.aura-mascot-chat {
+  display: flex;
+  flex-direction: column;
+  width: min(366px, calc(100vw - 28px));
+  max-height: min(610px, calc(100dvh - 150px));
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 20px 20px 6px 20px;
+  background: var(--surface);
+  color: var(--text);
+  box-shadow: 0 18px 56px rgb(18 14 12 / 24%);
+  pointer-events: auto;
+  animation: aura-mascot-chat-in 180ms ease-out both;
+}
+.aura-mascot-chat-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 14px;
+  border-bottom: 1px solid var(--line);
+  background: color-mix(in srgb, var(--accent) 6%, var(--surface));
+}
+.aura-mascot-chat-avatar {
+  display: grid;
+  width: 36px;
+  height: 36px;
+  flex: 0 0 auto;
+  place-items: center;
+  border-radius: 50%;
+  background: linear-gradient(145deg, #ffb580, #df4f3c 72%);
+  color: #fff;
+  font-family: "Manrope", sans-serif;
+  font-weight: 850;
+  box-shadow: 0 3px 12px rgb(192 66 50 / 22%);
+}
+.aura-mascot-chat-title { display: grid; gap: 1px; min-width: 0; }
+.aura-mascot-chat-title strong { color: var(--text); font-size: .95rem; }
+.aura-mascot-chat-title small { color: var(--accent); font-size: .74rem; font-weight: 700; }
+.aura-mascot-chat-close {
+  display: grid;
+  width: 34px;
+  height: 34px;
+  margin-left: auto;
+  place-items: center;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--surface);
+  color: var(--text);
+  font-size: 1.35rem;
+  line-height: 1;
+  cursor: pointer;
+}
+.aura-mascot-chat-context { display: grid; gap: 8px; padding: 10px 14px 8px; }
+.aura-mascot-chat-context > p { margin: 0; color: var(--text); font-size: .86rem; line-height: 1.45; }
+.aura-agent-goal-label { display: grid; gap: 4px; color: var(--text); font-size: .76rem; font-weight: 700; }
+.aura-agent-goal-label select {
+  width: 100%;
+  min-height: 38px;
+  padding: 7px 10px;
+  border: 1px solid var(--line);
+  border-radius: 9px;
+  background: var(--surface);
+  color: var(--text);
+}
+.aura-agent-messages {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  gap: 8px;
+  min-height: 90px;
+  max-height: 260px;
+  overflow: auto;
+  padding: 10px 12px;
+  overscroll-behavior: contain;
+}
+.aura-agent-message {
+  max-width: 94%;
+  padding: 8px 10px;
+  border: 1px solid var(--line);
+  border-radius: 12px 12px 12px 4px;
+  background: color-mix(in srgb, var(--text) 4%, var(--surface));
+  color: var(--text);
+  overflow-wrap: anywhere;
+}
+.aura-agent-message.user {
+  align-self: flex-end;
+  border-color: color-mix(in srgb, var(--accent) 26%, var(--line));
+  border-radius: 12px 12px 4px 12px;
+  background: color-mix(in srgb, var(--accent) 12%, var(--surface));
+}
+.aura-agent-message strong { display: block; margin-bottom: 3px; color: var(--accent); font-size: .72rem; }
+.aura-agent-message p { margin: 0; white-space: pre-wrap; font-size: .86rem; line-height: 1.5; }
+.aura-agent-empty { margin: auto; padding: 16px; color: var(--text); text-align: center; font-size: .86rem; line-height: 1.5; }
+.aura-agent-thinking { align-self: flex-start; margin: 2px 0; color: var(--accent); font-size: .82rem; animation: aura-agent-pulse 1.1s ease-in-out infinite; }
+.aura-agent-compose { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 8px; padding: 10px 12px; border-top: 1px solid var(--line); }
+.aura-agent-compose textarea {
+  grid-column: 1 / -1;
+  width: 100%;
+  min-height: 56px;
+  max-height: 112px;
+  resize: vertical;
+  padding: 9px 10px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--surface);
+  color: var(--text);
+  font: inherit;
+  font-size: .88rem;
+  line-height: 1.45;
+}
+.aura-agent-compose textarea::placeholder { color: color-mix(in srgb, var(--text) 55%, transparent); }
+.aura-agent-send {
+  grid-column: 2;
+  justify-self: end;
+  min-width: 76px;
+  min-height: 38px;
+  padding: 8px 14px;
+  border: 0;
+  border-radius: 9px;
+  background: var(--accent);
+  color: #fff;
+  font-weight: 750;
+  cursor: pointer;
+}
+.aura-agent-send:disabled { opacity: .55; cursor: not-allowed; }
+.aura-agent-error { grid-column: 1 / -1; margin: 0; color: #b42318; font-size: .8rem; line-height: 1.4; }
+.aura-agent-footnote { flex: 0 0 auto; margin: 0; padding: 0 12px 10px; color: color-mix(in srgb, var(--text) 68%, transparent); font-size: .7rem; line-height: 1.4; }
+@keyframes aura-mascot-chat-in { from { opacity: 0; transform: translateY(5px) scale(.99); } to { opacity: 1; transform: translateY(0) scale(1); } }
+@keyframes aura-agent-pulse { 0%, 100% { opacity: .65; } 50% { opacity: 1; } }
+@media (max-width: 700px) {
+  .aura-mascot-widget { right: 12px; bottom: calc(5.25rem + env(safe-area-inset-bottom)); }
+  .aura-mascot-chat { width: min(366px, calc(100vw - 24px)); max-height: min(70dvh, calc(100dvh - 145px)); }
+  .aura-agent-messages { max-height: 32dvh; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .aura-mascot-chat, .aura-agent-thinking { animation: none !important; }
+}
+
+
+/* Auri's full expression studio and voice-ready companion panel. */
+.aura-mascot-button { width: 90px; height: 90px; }
+.aura-mascot-art-frame { display: grid; width: 100%; height: 100%; place-items: center; }
+.aura-mascot-button .auri-face--large { width: 82px; }
+.aura-mascot-chat {
+  width: min(430px, calc(100vw - 28px));
+  max-height: min(760px, calc(100dvh - 132px));
+}
+.aura-mascot-chat-avatar {
+  display: grid;
+  width: 48px;
+  height: 48px;
+  padding: 0;
+  place-items: center;
+  overflow: hidden;
+  border: 1px solid color-mix(in srgb, var(--accent) 20%, var(--line));
+  border-radius: 50%;
+  background: var(--surface);
+  box-shadow: 0 4px 12px color-mix(in srgb, var(--accent) 14%, transparent);
+}
+.aura-mascot-chat-avatar .auri-face--compact { width: 46px; }
+.auri-companion-stage {
+  display: grid;
+  grid-template-columns: 112px minmax(0, 1fr);
+  align-items: center;
+  gap: 12px;
+  margin: 10px 12px 6px;
+  padding: 11px 14px;
+  border: 1px solid color-mix(in srgb, var(--accent) 14%, var(--line));
+  border-radius: 16px;
+  background: linear-gradient(120deg, color-mix(in srgb, var(--accent) 9%, var(--surface)), var(--surface));
+}
+.auri-companion-stage .auri-face--large { width: 108px; }
+.auri-companion-copy { display: grid; gap: 3px; min-width: 0; }
+.auri-companion-copy > span:last-child { color: var(--muted); font-size: .81rem; line-height: 1.4; overflow-wrap: anywhere; }
+.auri-companion-copy strong { color: var(--text); font-family: "Manrope", sans-serif; font-size: 1rem; text-transform: capitalize; }
+.auri-companion-eyebrow { color: var(--accent); font-size: .66rem; font-weight: 800; letter-spacing: .11em; }
+.auri-expression-studio {
+  margin: 0 12px 8px;
+  padding: 0 10px 9px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: color-mix(in srgb, var(--surface-2) 52%, var(--surface));
+}
+.auri-expression-studio summary { padding: 9px 1px 7px; color: var(--text); font-size: .8rem; font-weight: 750; cursor: pointer; }
+.auri-expression-controls { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.auri-expression-controls label, .auri-voice-language { display: grid; gap: 4px; color: var(--muted); font-size: .72rem; font-weight: 700; }
+.auri-expression-controls select, .auri-voice-language select {
+  width: 100%;
+  min-height: 34px;
+  padding: 5px 8px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--surface);
+  color: var(--text);
+  font: inherit;
+  font-size: .78rem;
+}
+.auri-export-actions { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 9px; }
+.auri-export-actions button, .auri-voice-button {
+  min-height: 32px;
+  padding: 6px 9px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--surface);
+  color: var(--text);
+  font: inherit;
+  font-size: .74rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+.auri-export-actions button:hover, .auri-voice-button:hover:not(:disabled) { border-color: var(--accent); color: var(--accent); }
+.auri-voice-button[aria-pressed="true"] { border-color: var(--accent); background: var(--accent-2); color: var(--accent); }
+.auri-voice-button:disabled { opacity: .5; cursor: not-allowed; }
+.auri-export-note, .auri-voice-note { margin: 6px 0 0; color: var(--muted); font-size: .7rem; line-height: 1.4; }
+.auri-voice-tools { grid-column: 1 / -1; display: grid; gap: 5px; }
+.auri-voice-controls { display: flex; flex-wrap: wrap; align-items: end; gap: 6px; }
+.auri-voice-language { min-width: 132px; margin-left: auto; }
+.aura-mascot-chat-avatar, .auri-companion-stage, .auri-expression-studio,
+.auri-voice-controls button, .auri-expression-controls select, .auri-voice-language select { transition: border-color 160ms ease, background-color 160ms ease, box-shadow 160ms ease; }
+@media (max-width: 700px) {
+  .aura-mascot-button { width: 66px; height: 66px; }
+  .aura-mascot-button .auri-face--large { width: 60px; }
+  .aura-mascot-chat { width: min(430px, calc(100vw - 20px)); max-height: min(76dvh, calc(100dvh - 154px)); }
+  .auri-companion-stage { grid-template-columns: 74px minmax(0, 1fr); gap: 9px; margin: 8px 9px 5px; padding: 8px 10px; }
+  .auri-companion-stage .auri-face--large { width: 72px; }
+  .auri-expression-studio { margin-right: 9px; margin-left: 9px; }
+  .auri-expression-controls { grid-template-columns: 1fr; }
+  .auri-voice-language { min-width: 118px; margin-left: 0; }
+  .aura-agent-messages { max-height: 29dvh; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .aura-mascot-button, .auri-companion-stage, .auri-expression-studio,
+  .auri-voice-controls button, .auri-expression-controls select, .auri-voice-language select { transition: none !important; }
+  .aura-mascot-button:hover { transform: none; }
+}
+
+
+/* Auri stays put unless the user deliberately uses the Move handle. */
+.aura-mascot-widget { transition: none !important; will-change: auto; }
+.aura-mascot-widget[data-dragging="true"] { z-index: 60; }
+.aura-mascot-drag-handle { position: absolute; z-index: 2; right: 0; bottom: calc(100% + 2px); display: inline-flex; align-items: center; gap: 4px; min-height: 28px; padding: 4px 8px; border: 1px solid var(--line); border-radius: 9px; background: var(--surface); color: var(--muted); box-shadow: 0 4px 12px color-mix(in srgb, var(--ink) 12%, transparent); font: 650 10px "DM Sans", sans-serif; cursor: grab; pointer-events: auto; touch-action: none; user-select: none; }
+.aura-mascot-drag-handle:active { cursor: grabbing; }
+.aura-mascot-drag-handle span:first-child { color: var(--accent); font-size: 14px; line-height: 1; }
+.aura-mascot-widget[data-chat-placement="left"] .aura-mascot-chat { left: auto; right: 0; }
+.aura-mascot-widget[data-chat-placement="right"] .aura-mascot-chat { left: 0; right: auto; }
+.aura-mascot-widget[data-chat-vertical="above"] .aura-mascot-chat { top: auto; bottom: calc(100% + 12px); }
+.aura-mascot-widget[data-chat-vertical="below"] .aura-mascot-chat { top: calc(100% + 12px); bottom: auto; }
+@media (max-width: 420px) {
+  .aura-mascot-drag-handle { min-height: 25px; padding: 3px 7px; font-size: 9px; }
+}

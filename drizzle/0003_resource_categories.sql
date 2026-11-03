@@ -1,0 +1,1 @@
+ALTER TABLE `aura_learning_resources` MODIFY COLUMN `type` enum('documentation','tutorial','article','book','paper','video','practice','project','other') NOT NULL DEFAULT 'other';

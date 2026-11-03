@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title">
+  <title id="title">AURA-X orbit star</title>
+  <rect width="128" height="128" rx="32" fill="#11100f"/>
+  <circle cx="64" cy="64" r="36" fill="none" stroke="#6d2d24" stroke-width="2"/>
+  <ellipse cx="64" cy="64" rx="45" ry="18" fill="none" stroke="#ff7059" stroke-opacity=".72" stroke-width="2.5" transform="rotate(-35 64 64)"/>
+  <ellipse cx="64" cy="64" rx="45" ry="18" fill="none" stroke="#e87945" stroke-opacity=".68" stroke-width="2.5" transform="rotate(35 64 64)"/>
+  <path d="M64 37 70 57 90 64 70 71 64 91 58 71 38 64 58 57Z" fill="#fff5ef"/>
+  <circle cx="97" cy="35" r="4" fill="#ff9a62"/>
+</svg>

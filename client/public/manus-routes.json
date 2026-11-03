@@ -1,0 +1,9 @@
+{
+  "routes": [
+    { "path": "/", "title": "AURA-X Dashboard" },
+    { "path": "/goals", "title": "Goals" },
+    { "path": "/goals/new", "title": "Create a goal" },
+    { "path": "/goals/:goalId", "title": "Goal workspace" },
+    { "path": "/settings", "title": "Preferences" }
+  ]
+}

@@ -1,0 +1,1 @@
+ALTER TABLE `aura_goals` ADD `startDate` date;
