@@ -198,4 +198,3 @@ application.
 
 ------------------------------------------------------------------------
 
-**AURA X --- Your goals deserve a system, not just motivation.**
