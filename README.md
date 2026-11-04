@@ -12,7 +12,7 @@ workspace to help you plan, learn, and stay consistent.
 ## 🚀 Live Demo
 
 **Website:** [AURA X --- Open Live
-Demo](https://8328-icn9mipnwu2act2tjy3md-cfd09473.sg2.manus.computer/)
+Demo](https://auraxai-hdxzpnek.manus.space)
 
 > Note: The demo is hosted on a Manus development URL and may not always
 > be available.
